@@ -100,14 +100,11 @@ function validateForm() {
     alert('Please fill out all the required fields.');
     return false;
   }
-
-  // Validate email address
   var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))<span class="math-inline">/;
 if \(\!emailRegex\.test\(email\)\) \{
 alert\('Please enter a valid email</4\> address\.'\);
 return false;</5\>
 \}
-// Validate mobile number
 var mobileNumberRegex \= /^\[0\-9\]\{10\}</span>/;
   if (!mobileNumberRegex.test(mobileNumber)) {
     alert('Please enter a valid mobile number.');
@@ -122,11 +119,9 @@ var mobileNumberRegex \= /^\[0\-9\]\{10\}</span>/;
 function showPopup() {
   document.querySelector('.popup').style.display = 'block';
 
-  // Display the survey results in the popup
   var surveyResults = document.querySelector('#survey-results');
   surveyResults.innerHTML = '';
 
-  // Get the selected values from the form
   var firstName = document.querySelector('input[name="first_name"]').value;
   var lastName = document.querySelector('input[name="last_name"]').value;
   var dateOfBirth = document.querySelector('input[name="date_of_birth"]').value;
@@ -136,7 +131,6 @@ function showPopup() {
   var email = document.querySelector('input[name="email"]').value;
   var mobileNumber = document.querySelector('input[name="mobile_number"]').value;
 
-  // Display the selected values in the popup, with labels
   surveyResults.innerHTML += '<li>First Name: ' + firstName + '</li>';
   surveyResults.innerHTML += '<li>Last Name: ' + lastName + '</li>';
   surveyResults.innerHTML += '<li>Date of Birth: ' + dateOfBirth + '</li>';
@@ -149,8 +143,6 @@ function showPopup() {
 
 function closePopup() {
   document.querySelector('.popup').style.display = 'none';
-
-  // Reset the form
   document.querySelector('form').reset();
 }
 </script>
