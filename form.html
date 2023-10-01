@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Survey Form</title>
+<style>
+body {
+  font-family: sans-serif;
+}
+
+form {
+  width: 500px;
+  margin: 0 auto;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  width: 100px;
+  margin-top: 10px;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+.popup-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  width: 500px;
+  padding: 20px;
+}
+</style>
+</head>
+<body>
+<h1>Survey Form</h1>
+
+<form action="" onsubmit="return validateForm()">
+
+<input type="text" name="first_name" placeholder="First Name" required>
+
+<input type="text" name="last_name" placeholder="Last Name" required>
+
+<input type="date" name="date_of_birth" placeholder="Date of Birth" required>
+
+<select name="country" required>
+  <option value="">Select Country</option>
+  <option value="Afghanistan">Afghanistan</option>
+  <option value="Albania">Albania</option>
+  <option value="Algeria">Algeria</option>
+  ...
+</select>
+
+<input type="checkbox" name="gender" value="male"> Male
+<input type="checkbox" name="gender" value="female"> Female
+
+<input type="text" name="profession" placeholder="Profession" required>
+
+<input type="email" name="email" placeholder="Email" required>
+
+<input type="tel" name="mobile_number" placeholder="Mobile Number" required>
+
+<button type="submit">Submit</button>
+<button type="reset">Reset</button>
+
+</form>
+
+<div class="popup">
+  <div class="popup-content">
+    <h1>Survey Results</h1>
+    <ul id="survey-results"></ul>
+    <button type="button" onclick="closePopup()">Close</button>
+  </div>
+</div>
+
+<script>
+function validateForm() {
+  var firstName = document.querySelector('input[name="first_name"]').value;
+  var lastName = document.querySelector('input[name="last_name"]').value;
+  var dateOfBirth = document.querySelector('input[name="date_of_birth"]').value;
+  var country = document.querySelector('select[name="country"]').value;
+  var gender = document.querySelector('input[name="gender"]:checked').value;
+  var profession = document.querySelector('input[name="profession"]').value;
+  var email = document.querySelector('input[name="email"]').value;
+  var mobileNumber = document.querySelector('input[name="mobile_number"]').value;
+
+  if (firstName == '' || lastName == '' || dateOfBirth == '' || country == '' || gender == '' || profession == '' || email == '' || mobileNumber == '') {
+    alert('Please fill out all the required fields.');
+    return false;
+  }
+
+  // Validate email address
+  var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))<span class="math-inline">/;
+if \(\!emailRegex\.test\(email\)\) \{
+alert\('Please enter a valid email</4\> address\.'\);
+return false;</5\>
+\}
+// Validate mobile number
+var mobileNumberRegex \= /^\[0\-9\]\{10\}</span>/;
+  if (!mobileNumberRegex.test(mobileNumber)) {
+    alert('Please enter a valid mobile number.');
+    return false;
+  }
+  // Show the popup
+  showPopup();
+
+  return true;
+}
+
+function showPopup() {
+  document.querySelector('.popup').style.display = 'block';
+
+  // Display the survey results in the popup
+  var surveyResults = document.querySelector('#survey-results');
+  surveyResults.innerHTML = '';
+
+  // Get the selected values from the form
+  var firstName = document.querySelector('input[name="first_name"]').value;
+  var lastName = document.querySelector('input[name="last_name"]').value;
+  var dateOfBirth = document.querySelector('input[name="date_of_birth"]').value;
+  var country = document.querySelector('select[name="country"]').value;
+  var gender = document.querySelector('input[name="gender"]:checked').value;
+  var profession = document.querySelector('input[name="profession"]').value;
+  var email = document.querySelector('input[name="email"]').value;
+  var mobileNumber = document.querySelector('input[name="mobile_number"]').value;
+
+  // Display the selected values in the popup, with labels
+  surveyResults.innerHTML += '<li>First Name: ' + firstName + '</li>';
+  surveyResults.innerHTML += '<li>Last Name: ' + lastName + '</li>';
+  surveyResults.innerHTML += '<li>Date of Birth: ' + dateOfBirth + '</li>';
+  surveyResults.innerHTML += '<li>Country: ' + country + '</li>';
+  surveyResults.innerHTML += '<li>Gender: ' + gender + '</li>';
+  surveyResults.innerHTML += '<li>Profession: ' + profession + '</li>';
+  surveyResults.innerHTML += '<li>Email: ' + email + '</li>';
+  surveyResults.innerHTML += '<li>Mobile Number: ' + mobileNumber + '</li>';
+}
+
+function closePopup() {
+  document.querySelector('.popup').style.display = 'none';
+
+  // Reset the form
+  document.querySelector('form').reset();
+}
+</script>
+</body>
+</html>
+
